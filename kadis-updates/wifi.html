@@ -196,17 +196,41 @@
       margin-top: 15px;
     }
 
+    /* ---------- Nav ---------- */
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 78px;
+      gap: 42px;
+    }
+
+    .logo {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
     .nav-links {
       display: flex;
-      gap: 34px;
-      font-size: 14.5px;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 28px;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      font-size: 14px;
       font-weight: 600;
       color: var(--ink-dim);
     }
 
     .nav-links a {
       position: relative;
-      padding: 6px 0;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 0;
+      white-space: nowrap;
       transition: color .2s;
     }
 
@@ -229,18 +253,17 @@
       width: 100%;
     }
 
-    .nav-links a.active {
-      color: var(--amber-soft);
-    }
-
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .nav-actions .btn-primary {
+      white-space: nowrap;
+      font-size: 12px;
+      padding: 11px 15px;
     }
 
     .icon-btn {
@@ -1080,15 +1103,16 @@
         <img src="images/KADISS.png" alt="Kadis" style="height:38px; width:auto; border-radius:8px;">
       </a>
       <div class="nav-links">
-        <a href="gadgets.html">Gadgets & Accessories</a>
-        <a href="index.html#services">Services</a>
-        <a href="delivery.html">Delivery</a>
+        <a href="index.html#solutions">Solutions</a>
+        <a href="installation.html">ICT Engineering</a>
+        <a href="rental.html">Equipment Rentals</a>
+        <a href="projects.html">Projects</a>
+        <a href="eventmedia.html">Media & Events</a>
+        <a href="Allcategory.html">Store</a>
         <a href="index.html#about">About</a>
-        <a href="index.html#faqs">FAQs</a>
         <a href="blog.html">Blog</a>
       </div>
       <div class="nav-actions">
-        <div class="icon-btn">⌕</div>
         <a class="icon-btn" href="cart.html">🛒<span class="cart-count">0</span></a>
         <a class="btn-primary" href="#" data-open-solution>Request a Solution</a>
       </div>
