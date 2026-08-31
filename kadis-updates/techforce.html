@@ -155,44 +155,42 @@
       font-weight: 700;
     }
 
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(11, 12, 15, 0.82);
-      backdrop-filter: blur(16px) saturate(140%);
-      border-bottom: 1px solid var(--line);
-    }
+    /* ---------- Nav ---------- */
 
     .nav-inner {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       height: 78px;
+      gap: 42px;
     }
 
     .logo {
+      flex: 0 0 auto;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-family: 'Sora';
-      font-weight: 800;
-      font-size: 22px;
     }
 
     .nav-links {
       display: flex;
-      gap: 34px;
-      font-size: 14.5px;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 28px;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      font-size: 14px;
       font-weight: 600;
       color: var(--ink-dim);
     }
 
     .nav-links a {
       position: relative;
-      padding: 6px 0;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 0;
+      white-space: nowrap;
       transition: color .2s;
-      margin-top: 15px;
     }
 
     .nav-links a:hover {
@@ -217,8 +215,25 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
+      flex: 0 0 auto;
     }
+
+    .nav-actions .btn-primary {
+      white-space: nowrap;
+      font-size: 12px;
+      padding: 11px 15px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Sora';
+      font-weight: 800;
+      font-size: 22px;
+    }
+
 
     .icon-btn {
       width: 40px;
@@ -1342,14 +1357,16 @@
         <img src="images/KADISS.png" alt="Kadis" style="height:38px; width:auto; border-radius:8px;">
       </a>
       <div class="nav-links">
-        <a href="#what">What It Is</a>
-        <a href="#services">Services</a>
-        <a href="#calls">Recent Call-outs</a>
-        <a href="#coverage">Coverage</a>
-        <a href="#faqs">FAQs</a>
+        <a href="index.html#solutions">Solutions</a>
+        <a href="installation.html">ICT Engineering</a>
+        <a href="rental.html">Equipment Rentals</a>
+        <a href="projects.html">Projects</a>
+        <a href="eventmedia.html">Media & Events</a>
+        <a href="Allcategory.html">Store</a>
+        <a href="index.html#about">About</a>
+        <a href="blog.html">Blog</a>
       </div>
       <div class="nav-actions">
-        <div class="icon-btn">⌕</div>
         <a class="btn-primary" href="#services">Book a Technician</a>
       </div>
     </div>
