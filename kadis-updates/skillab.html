@@ -198,22 +198,45 @@
       margin-top: 15px;
     }
 
+    /* ---------- Nav ---------- */
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 78px;
+      gap: 42px;
+    }
+
+    .logo {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
     .nav-links {
       display: flex;
-      gap: 34px;
-      font-size: 14.5px;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 28px;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      font-size: 14px;
       font-weight: 600;
       color: var(--ink-dim);
     }
 
     .nav-links a {
       position: relative;
-      padding: 6px 0;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 0;
+      white-space: nowrap;
       transition: color .2s;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links a:hover {
       color: var(--ink);
     }
 
@@ -228,15 +251,21 @@
       transition: width .3s cubic-bezier(.16, .8, .24, 1);
     }
 
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
+    .nav-links a:hover::after {
       width: 100%;
     }
 
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .nav-actions .btn-primary {
+      white-space: nowrap;
+      font-size: 12px;
+      padding: 11px 15px;
     }
 
     .icon-btn {
@@ -1374,14 +1403,16 @@
         <img src="images/KADISS.png" alt="Kadis" style="height:38px; width:auto; border-radius:8px;">
       </a>
       <div class="nav-links">
-        <a href="#why">Why SkillLab</a>
-        <a href="#courses">Tracks</a>
-        <a href="#format">Format</a>
-        <a href="#how">How It Works</a>
-        <a href="#faqs">FAQs</a>
+        <a href="index.html#solutions">Solutions</a>
+        <a href="installation.html">ICT Engineering</a>
+        <a href="rental.html">Equipment Rentals</a>
+        <a href="projects.html">Projects</a>
+        <a href="eventmedia.html">Media & Events</a>
+        <a href="Allcategory.html">Store</a>
+        <a href="index.html#about">About</a>
+        <a href="blog.html">Blog</a>
       </div>
       <div class="nav-actions">
-        <div class="icon-btn">⌕</div>
         <a class="btn-primary"
           href="https://wa.me/2348061379390?text=Hi%20Kadis%2C%20I%27d%20like%20to%20know%20more%20about%20Tech%20SkillLab%20courses.">See
           Courses</a>
