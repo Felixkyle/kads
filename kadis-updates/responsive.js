@@ -28,6 +28,36 @@
       (it's duplicated as a full-width CTA further down every
       page) and cloned into the mobile drawer instead, so the
       action isn't lost, just relocated.
+
+   5. Keeps the "All Categories" bar (.search-row) visible on
+      mobile instead of scrolling away. Each page's own inline
+      CSS sticks it under the nav on desktop but overrides that
+      to position:static at max-width:900px, so on phones it
+      scrolled off with the rest of the page and users had to
+      scroll back to the very top to find it. This re-forces it
+      sticky (!important beats that inline override) on mobile too.
+
+   6. Makes the "All Categories" button visibly clickable — a
+      soft pulsing amber ring + a gently bouncing chevron, both
+      of which stop once the user hovers or opens the menu so
+      it doesn't feel distracting after they've noticed it.
+
+   7. Fixes the sticky nav actually losing its "stay pinned"
+      behavior on scroll. Every page's own CSS sets
+      "body { overflow-x: hidden }" (to stop decorative hero
+      icons causing a horizontal scrollbar) — but that specific
+      property is a known trigger for a bug (mainly Safari/iOS)
+      where "position: sticky" elements stop sticking and just
+      scroll away instead of staying pinned. This swaps it for
+      "overflow-x: clip", which blocks the scrollbar the same
+      way without breaking sticky, so the nav (and the "All
+      Categories" bar) now genuinely stay in place on scroll.
+
+   8. Signals that the hamburger button opens a full menu — a
+      soft pulsing ring around the button plus a small amber
+      notification-style dot in the corner, both of which stop
+      once the drawer is open (so it doesn't nag once they've
+      found it, or after they've already used it once).
    ============================================================ */
 
 (function () {
@@ -50,6 +80,31 @@
       cursor: pointer;
       flex-shrink: 0;
       order: -1;
+      position: relative;
+      animation: kadisHamburgerPulse 2.4s ease-in-out infinite;
+    }
+    .kadis-hamburger.is-open { animation: none; }
+    /* small amber "there's more here" dot, like a notification badge */
+    .kadis-hamburger::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #D9772E;
+      box-shadow: 0 0 0 2px #131519;
+      animation: kadisDotPulse 2.4s ease-in-out infinite;
+    }
+    .kadis-hamburger.is-open::after { display: none; }
+    @keyframes kadisHamburgerPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(217, 119, 46, 0.35); }
+      50% { box-shadow: 0 0 0 7px rgba(217, 119, 46, 0); }
+    }
+    @keyframes kadisDotPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.55; }
     }
     .kadis-hamburger .bar {
       display: block;
@@ -154,10 +209,42 @@
       .hero-cta a { justify-content: center; text-align: center; }
     }
 
-    /* ---- Stop hero decoration from causing horizontal overflow ---- */
-    body { overflow-x: hidden; }
+    /* ---- Stop hero decoration from causing horizontal overflow (fix 3),
+       WITHOUT breaking the sticky nav / search-row (fix 5/7) ----
+       Every page's own inline CSS sets "body { overflow-x: hidden; }" to
+       stop the decorative hero chips from causing a horizontal scrollbar.
+       That property is a well-known trigger for a browser bug (notably
+       Safari/iOS) where "position: sticky" elements stop sticking and
+       just scroll away with the page instead of staying pinned — which
+       is exactly why the whole nav (and the "All Categories" bar) could
+       be seen scrolling off instead of staying put. "overflow-x: clip"
+       gives the same visual result (no horizontal scrollbar) without
+       triggering that bug, so this overrides the page's own rule. */
+    body { overflow-x: clip !important; overflow-y: visible !important; }
     @media (max-width: 640px) {
       .hero-visual { transform: scale(0.82); transform-origin: center; }
+    }
+
+    /* ---- Keep "All Categories" bar visible on mobile (fix 5) ----
+       Beats each page's own "@media (max-width:900px) .search-row
+       { position: static; }" override via !important + source order. */
+    @media (max-width: 900px) {
+      .search-row { position: sticky !important; top: 78px !important; z-index: 45 !important; }
+    }
+
+    /* ---- Make "All Categories" obviously clickable (fix 6) ---- */
+    .cat-trigger { animation: kadisCatPulse 2.4s ease-in-out infinite; }
+    .cat-trigger:hover,
+    .cat-trigger.active { animation: none; }
+    .cat-trigger .chev { animation: kadisChevNudge 1.6s ease-in-out infinite; }
+    .cat-trigger.active .chev { animation: none; }
+    @keyframes kadisCatPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(217, 119, 46, 0.35); }
+      50% { box-shadow: 0 0 0 7px rgba(217, 119, 46, 0); }
+    }
+    @keyframes kadisChevNudge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(3px); }
     }
   `;
   document.head.appendChild(style);
